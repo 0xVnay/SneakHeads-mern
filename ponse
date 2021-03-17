@@ -1,0 +1,17 @@
+[33mcommit 7af1f4677435ab650d74c860e19fd556eef0731f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Vinay Kumar <vinayleokumar@gmail.com>
+Date:   Wed Mar 17 19:11:55 2021 +0530
+
+    Added login and logout functionality
+
+[33mcommit 607d1eae91a9ddf80223e8b4e69d50e54ef2c822[m
+Author: Vinay Kumar <vinayleokumar@gmail.com>
+Date:   Wed Mar 17 17:59:57 2021 +0530
+
+    completed basic frontend and backend
+
+[33mcommit f52cd4ae9167a6dd0175454f1c59cb8a661f6cdb[m
+Author: Vinay Kumar <vinayleokumar@gmail.com>
+Date:   Sun Mar 14 19:19:11 2021 +0530
+
+    React setup
