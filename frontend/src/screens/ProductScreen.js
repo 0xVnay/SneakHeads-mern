@@ -17,6 +17,7 @@ import { listProductDetails } from "../actions/productActions";
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1);
+  const [size, setSize] = useState(8);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -27,12 +28,14 @@ const ProductScreen = ({ match, history }) => {
   }, [dispatch, match]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    history.push(`/cart/${match.params.id}?qty=${qty}&size=${size}`);
   };
 
   return (
     <>
-      <Link className="btn btn-dark my-3">Go Back</Link>
+      <Link to="/" className="btn btn-dark my-3">
+        Go Back
+      </Link>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -53,7 +56,10 @@ const ProductScreen = ({ match, history }) => {
                   text={`${product.numReviews} reviews`}
                 />
               </ListGroup.Item>
-              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+              <ListGroup.Item>
+                Price: Rs.{" "}
+                {product.price && product.price.toLocaleString("en-IN")}
+              </ListGroup.Item>
               <ListGroup.Item>
                 Description: {product.description}
               </ListGroup.Item>
@@ -66,7 +72,10 @@ const ProductScreen = ({ match, history }) => {
                   <Row>
                     <Col>Price:</Col>
                     <Col>
-                      <strong>${product.price}</strong>
+                      <strong>
+                        Rs.
+                        {product.price && product.price.toLocaleString("en-IN")}
+                      </strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -99,6 +108,24 @@ const ProductScreen = ({ match, history }) => {
                     </Row>
                   </ListGroup.Item>
                 )}
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Size</Col>
+                    <Col>
+                      <Form.Control
+                        as="select"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
+                      >
+                        {[...Array(7).keys()].map((x) => (
+                          <option key={x + 6} value={x + 6}>
+                            {x + 6}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
                 <ListGroup.Item>
                   <Button
                     onClick={addToCartHandler}

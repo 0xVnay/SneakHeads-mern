@@ -16,6 +16,17 @@ h3 {
   padding: 1rem;
 }
 
+.nav-logo {
+  width: 160px;
+  height: 40px;
+  padding: .5rem;
+  background-color: #fff;
+}
+
+.nav-logo img {
+  max-width: 100%;
+}
+
 .rating span {
   margin: 0.1rem;
 }

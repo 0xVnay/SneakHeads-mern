@@ -17,7 +17,12 @@ const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
 
   //location.search : ?qty=5
-  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
+  const qty = location.search
+    ? Number(window.location.search.split("?")[1].split("&")[0].split("=")[1])
+    : 1;
+  const size = location.search
+    ? Number(window.location.search.split("?")[1].split("&")[1].split("=")[1])
+    : 8;
 
   const dispatch = useDispatch();
 
@@ -26,9 +31,9 @@ const CartScreen = ({ match, location, history }) => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, qty, size));
     }
-  }, [dispatch, productId, qty]);
+  }, [dispatch, productId, qty, size]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
@@ -56,14 +61,15 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={3}>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
+                  <Col md={2}>Rs. {item.price.toLocaleString("en-IN")}</Col>
+                  <Col md={2}>Size: {item.size}</Col>
                   <Col md={2}>
                     <Form.Control
                       as="select"
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          addToCart(item.product, Number(e.target.value))
+                          addToCart(item.product, Number(e.target.value), size)
                         )
                       }
                     >
@@ -74,7 +80,7 @@ const CartScreen = ({ match, location, history }) => {
                       ))}
                     </Form.Control>
                   </Col>
-                  <Col md={2}>
+                  <Col md={1}>
                     <Button
                       type="button"
                       variant="light"
@@ -98,13 +104,14 @@ const CartScreen = ({ match, location, history }) => {
                 {cartItems.reduce((acc, currItem) => acc + currItem.qty, 0)})
                 items
               </h2>
-              $
+              Rs.
               {cartItems
                 .reduce(
                   (acc, currItem) => acc + currItem.qty * currItem.price,
                   0
                 )
-                .toFixed(2)}
+                .toFixed(2)
+                .toLocaleString("en-IN")}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button

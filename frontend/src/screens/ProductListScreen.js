@@ -11,7 +11,7 @@ import {
 } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
-const ProductListScreen = ({ history, match }) => {
+const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -103,7 +103,7 @@ const ProductListScreen = ({ history, match }) => {
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
-                <td>${product.price}</td>
+                <td>Rs.{product.price.toLocaleString("en-IN")}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>

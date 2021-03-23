@@ -6,7 +6,7 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
+export const addToCart = (id, qty, size) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
   console.log(data);
   dispatch({
@@ -18,6 +18,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       price: data.price,
       countInStock: data.countInStock,
       qty,
+      size,
     },
   });
 

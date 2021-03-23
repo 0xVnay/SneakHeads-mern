@@ -94,7 +94,8 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x Rs.{item.price.toLocaleString("en-IN")} =
+                          Rs.{(item.qty * item.price).toLocaleString("en-IN")}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -113,30 +114,36 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>
+                    Rs.{Number(cart.itemsPrice).toLocaleString("en-IN")}
+                  </Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>
+                    Rs.{Number(cart.shippingPrice).toLocaleString("en-IN")}
+                  </Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>Rs.{Number(cart.taxPrice).toLocaleString("en-IN")}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>
+                    Rs.{Number(cart.totalPrice).toLocaleString("en-IN")}
+                  </Col>
                 </Row>
               </ListGroup.Item>
-              
-                {error && <Message variant="danger">{error}</Message>}
-              
+
+              {error && <Message variant="danger">{error}</Message>}
+
               <ListGroup.Item>
                 <Button
                   type="button"
