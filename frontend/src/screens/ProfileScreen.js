@@ -44,7 +44,6 @@ const ProfileScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("submitting");
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
