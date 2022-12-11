@@ -15,6 +15,13 @@ connectDB();
 
 const app = express();
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/products", productRoutes);
